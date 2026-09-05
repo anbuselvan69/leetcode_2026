@@ -1,9 +1,8 @@
+from collections import Counter
+
 class Solution:
     def majorityFrequencyGroup(self, s):
-        a = {}
-
-        for c in s:
-            a[c] = a.get(c, 0) + 1
+        a = Counter(s)
 
         b = {}
 
@@ -15,10 +14,7 @@ class Solution:
         best = 0
 
         for f in b:
-            if len(b[f]) > len(ans):
-                ans = b[f]
-                best = f
-            elif len(b[f]) == len(ans) and f > best:
+            if len(b[f]) > len(ans) or (len(b[f]) == len(ans) and f > best):
                 ans = b[f]
                 best = f
 
